@@ -34,15 +34,15 @@ RUN if [ ${INSTALL_YAF} = true ]; then \
 ###########################################################################
 # LDAP:
 ###########################################################################
-
-ARG INSTALL_LDAP=false
+ARG INSTALL_LDAP=true
 
 RUN if [ ${INSTALL_LDAP} = true ]; then \
-    pecl install ldap && \
-    docker-php-ext-enable ldap \
-    # apt-get install -yqq libldap2-dev && \
+    # pecl install ldap && \
+    # docker-php-ext-enable ldap \
+    apt-get update && \
+    apt-get install -yqq libldap2-dev && \
     # docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
-    # docker-php-ext-install ldap \
+    docker-php-ext-install ldap \
 ;fi
 
 ###########################################################################
@@ -55,5 +55,11 @@ RUN if [ ${INSTALL_SEASLOG} = true ]; then \
     pecl install seaslog && \
     docker-php-ext-enable seaslog \
 ;fi
+
+
+# 设置时区
+ARG TZ=PRC
+ENV TZ ${TZ}
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /data/wwwroot

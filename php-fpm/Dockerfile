@@ -26,7 +26,7 @@ RUN if [ ${INSTALL_YAF} = true ]; then \
     # make && \
     # make install && \
     # rm -rf /tmp/yaf-3.1.3 \
-    pecl install yaf-3.1.3 && \
+    pecl install yaf-3.3.3 && \
     docker-php-ext-enable yaf; \
     php -m | grep -q 'yaf' \
 ;fi

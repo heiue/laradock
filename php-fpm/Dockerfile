@@ -88,6 +88,15 @@ RUN if [ ${INSTALL_XHPROF} = true ]; then \
     # rm /usr/local/etc/php/conf.d/xhprof.ini \
 # ;fi
 
+###########################################################################
+# 常用命令安装:
+###########################################################################
+ARG BASH=true
+
+RUN if [ ${BASH} = true ]; then \
+    apt-get update && \
+    apt-get -f -y --force-yes install graphviz \
+;fi
 
 # 设置时区
 ARG TZ=PRC

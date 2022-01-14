@@ -82,8 +82,7 @@ RUN if [ ${INSTALL_XHPROF} = true ]; then \
     && rm /tmp/xhprof.tar.gz \
 ;fi
 
-#COPY ./xhprof.ini /usr/local/etc/php/conf.d
-
+# COPY ./xhprof.ini /usr/local/etc/php/conf.d
 # RUN if [ ${INSTALL_XHPROF} = false ]; then \
     # rm /usr/local/etc/php/conf.d/xhprof.ini \
 # ;fi
